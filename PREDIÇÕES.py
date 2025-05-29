@@ -81,6 +81,7 @@ if st.session_state.uploaded_file is not None:
 
     st.subheader("Envio do Relatório")
     with st.form("my_form"):
+        serial_number = st.text_input("Número de série da placa:", max_chars=13)
         false_positives = st.number_input("Falsos Positivos:", min_value=0, max_value=100)
         false_negatives = st.number_input("Problemas não identificados:",  min_value=0, max_value=100)
         observacao = st.text_area("Comentário (Opcional)")
@@ -88,6 +89,7 @@ if st.session_state.uploaded_file is not None:
         if enviado:
             data = {
                 "annotations": result.to_coco_annotations(),
+                "serial_number": serial_number,
                 "img_path": None,
                 "missing": int(missing_count),
                 "reversed": int(reversed_count),
