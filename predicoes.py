@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="Inspeção Visual - TECSCI"
 )
 
-client = MongoClient("localhost:27017")
+client = MongoClient("mongodb://tecsci:AHy5609&tvxU75&%40yan@54.165.71.198:30077")
 db = client.get_database("tecsci")
 pcbs = db.get_collection("pcb")
 

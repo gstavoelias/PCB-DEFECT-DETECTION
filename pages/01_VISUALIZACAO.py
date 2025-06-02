@@ -12,13 +12,14 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html = True)
 
 
-client = MongoClient("localhost:27017")
+client = MongoClient("mongodb://tecsci:AHy5609&tvxU75&%40yan@54.165.71.198:30077")
 db = client.get_database("tecsci")
 pcbs = db.get_collection("pcb").find()
 df = pd.json_normalize(pcbs).drop(["_id", "annotations", "img_path"], axis=1)
 df["horario"] = pd.to_datetime(df["horario"])
 
 st.header("Dashboard - Inspeções da IA")
+st.info(f"Inspeções realizadas: {len(df)}")
 col1, col2, col3, col4 = st.columns(4, gap="small")
 with col1:
     with st.container(border=True):
